@@ -1,0 +1,25 @@
+Copyright (c) 2026 kangkangzai. All rights reserved.
+
+This repository is a source-available distribution, not an OSI-approved
+open-source release.
+
+Permission is granted to download, inspect, compile, and use the firmware
+source code, macOS source code, binaries, scripts, and documentation for
+personal, non-commercial use with compatible hardware. You may modify the
+source code and binaries for your own personal, non-commercial use.
+
+Without prior written permission from the copyright holder, you may not:
+
+1. redistribute, sell, sublicense, or commercially exploit the materials;
+2. publish or distribute modified or unmodified copies, or claim the project
+   as your own;
+3. use the materials to provide a paid product or service; or
+4. remove copyright, attribution, integrity, or security notices.
+
+Third-party components remain subject to their respective licenses. See
+THIRD_PARTY_NOTICES.md.
+
+THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. TO THE
+MAXIMUM EXTENT PERMITTED BY LAW, THE COPYRIGHT HOLDER IS NOT LIABLE FOR ANY
+CLAIM, DAMAGE, DATA LOSS, DEVICE DAMAGE, OR OTHER LIABILITY ARISING FROM USE OF
+THE MATERIALS.

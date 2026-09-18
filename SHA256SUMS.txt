@@ -1,0 +1,86 @@
+e9948781e8be6f3369ca6b7c21d4f839d3c7e2a20eb0bcfea7e435cda3274f0d  ./.gitignore
+2eacae2ad09112b6c9a37e88bd5c68d8782fe626bff411dfff09b0e8c423bc40  ./LICENSE
+734169da819ed3dc90d8d590422c7e91ad45b81f3de7f6fe916f56f3d5a4ab30  ./README.md
+1d8925b24330964833c69bf15b4648d7532708d33b0f209569970626488be4aa  ./SECURITY.md
+81c4b739a049860aff60a611af3fbf921370732c0ab30cbeb9411d89f9f4300e  ./THIRD_PARTY_NOTICES.md
+9b610d50a0731cf61a2aacf480afba5108b816a67f0d68ffd6d3685102582999  ./docs/BUILDING.md
+77a74f58576329ae02c486dff2a12226333e33e6132f45a5d0466ab9564b0c5f  ./docs/VERSIONS.md
+64d31f519f5c8c251b0af4008314f6167e6e159405def1178ee282dd1ed30e07  ./variants/1-one-key-voice/README.md
+b4b50e3ce95f8e87d41d3887c9acff8cbf924eb8b2967a499d14344c3b444cab  ./variants/1-one-key-voice/macos/M3原用-XIAO语音键盘-Mac安装包-v2.2.zip
+0b317f54b06f7174df14c27ce62924f7328a9613b6d6baf24de1ff745476a386  ./variants/2-three-key-k1-voice/README.md
+63be1a290b4e9095814fbe92261a6124b24d3cb860428c4b6ef900e6acc6398d  ./variants/2-three-key-k1-voice/diagnostics/diagnose
+9a54197ab37ff3681b845793e700036a2f4ebd3d0fbcaddde7df879c3307989d  ./variants/2-three-key-k1-voice/diagnostics/record_xiao
+6f1435910fa6a70bc7140a2014a1940f3687d1518f13afd98f359da2a381c325  ./variants/2-three-key-k1-voice/firmware/XIAO-ESP32S3-Voice-Keyboard-V2-complete.bin
+f94c5d786a7a8fab06ac5d10e33bf37711a6697636dc037559ea19cc410a17f0  ./variants/2-three-key-k1-voice/firmware/boot_app0.bin
+1776e4dd896a69d0a5c2e79957b0e2a88aa4129b1381d6478683515a1f6af343  ./variants/2-three-key-k1-voice/firmware/bootloader.bin
+202a25bbf14bbbdda87870d8caed3c38c8b8f7d3cd35690b84bb2f22b248ea59  ./variants/2-three-key-k1-voice/firmware/firmware-app-V2.bin
+1d9cca96de0fe07ad7fc0648b9878ddecd9ce565e38b589ad20fea698ed4c80c  ./variants/2-three-key-k1-voice/firmware/partitions.bin
+bfbfd868a9deffc033c3e20ff4fff79fab1678ac1635f168ff699e5fd2471594  ./variants/2-three-key-k1-voice/firmware/烧录V2.command
+ee09acdb39c0c907aade14fd3ae16682e4d1fef40095065b270c4ffe3c7d40a7  ./variants/2-three-key-k1-voice/firmware/烧录说明.md
+af7dbc76cec99f33688a302a676d60b3ba2b8a66a286494c963bd8bf13b31e5c  ./variants/2-three-key-k1-voice/macos/Fn Bridge.app/Contents/Info.plist
+76196e1a682ee286286b94d9853de560b0e55e851c3c9cb59f44fdb00c7f5065  ./variants/2-three-key-k1-voice/macos/Fn Bridge.app/Contents/MacOS/fn-bridge
+6686de10a28a2fe11b36cbb86dcbacc827cfc4ea116b4dabf1845e5aee629e9b  ./variants/2-three-key-k1-voice/macos/Fn Bridge.app/Contents/_CodeSignature/CodeResources
+8b10b1d3a24eb75ee63ca8c0b7774013d035b2f96458bcd8edc2467e039d0fb4  ./variants/2-three-key-k1-voice/macos/com.kangkangzai.xiao-fn-bridge.plist
+2a1d7224f1864e1d351eb187f508b7830436e6cb55461ba0f9bc3a6a4d58e97a  ./variants/2-three-key-k1-voice/macos/安装Fn Bridge.command
+0b8baf24e921506e23d4571d275592e6a6a15f7922ef4de13da2b84a4455d06d  ./variants/2-three-key-k1-voice/source/firmware/platformio.ini
+7276a9a8a5c54e35143d0aa3686af523e1bce9605aa699a58c6b93e3f2c59501  ./variants/2-three-key-k1-voice/source/firmware/src/audio_device.c
+23e4e464471429f5f4a0392d792cf178e95bdf81ac7081c950f8596f224a06dc  ./variants/2-three-key-k1-voice/source/firmware/src/dcd_esp32sx_fixed.c
+eb829486dbd531708c4ab20b0604cca21cba6d9e18664bc43b29345f2e1a97db  ./variants/2-three-key-k1-voice/source/firmware/src/main.cpp
+af7dbc76cec99f33688a302a676d60b3ba2b8a66a286494c963bd8bf13b31e5c  ./variants/2-three-key-k1-voice/source/macos/Fn-Bridge-Info.plist
+b8db8038ef2f2a624cb49d9947f7ef5b22e9dfbbbe853a7e1d3ac67c89326ab1  ./variants/2-three-key-k1-voice/source/macos/build-macos.command
+78278052709e5b1e7ff4949c7e75416a89a64b10b0d3d1e802b60af7addc4632  ./variants/2-three-key-k1-voice/source/macos/diagnose.swift
+423bf2a1bc29e7491b147dd11034d28f86b7e90bfeb71849c7ced43049fddfaa  ./variants/2-three-key-k1-voice/source/macos/fn_bridge.m
+66484410fa1c2fd2eb64359829596b946e6bb941ddfc0f932dc427074e7cf803  ./variants/2-three-key-k1-voice/source/macos/fn_bridge.swift
+0b407212ff0354f46ee539711d2f5eaaf274e15ff72f600ec0945b8f7f02902c  ./variants/2-three-key-k1-voice/source/macos/record_xiao.swift
+b6aafe7c9c436ce9a2852bab2b1ee8cee9a5de944f6d4a16e9740e2604bc2d43  ./variants/3-three-key-voice-send-cancel/README.md
+83970128cbd1506dbb391b80b982c67c57a5f65358d3166f934581fd96665934  ./variants/3-three-key-voice-send-cancel/diagnostics/diagnose
+9a54197ab37ff3681b845793e700036a2f4ebd3d0fbcaddde7df879c3307989d  ./variants/3-three-key-voice-send-cancel/diagnostics/record_xiao
+3c17386fcd70c409c3bfb7410e617d2d1c02dea12df02a1bc36c694fca1f9a22  ./variants/3-three-key-voice-send-cancel/firmware/XIAO-ESP32S3-Voice-Keyboard-V3-complete.bin
+f94c5d786a7a8fab06ac5d10e33bf37711a6697636dc037559ea19cc410a17f0  ./variants/3-three-key-voice-send-cancel/firmware/boot_app0.bin
+1776e4dd896a69d0a5c2e79957b0e2a88aa4129b1381d6478683515a1f6af343  ./variants/3-three-key-voice-send-cancel/firmware/bootloader.bin
+46bae0adff4337a4e62d6792b94ed8cee06fb0f2a73136f4cd3ff10287e8af27  ./variants/3-three-key-voice-send-cancel/firmware/firmware-app-V3.bin
+1d9cca96de0fe07ad7fc0648b9878ddecd9ce565e38b589ad20fea698ed4c80c  ./variants/3-three-key-voice-send-cancel/firmware/partitions.bin
+9e75773c8e1ee673b96cdcb9baea4fc4cdacbbcd640e2b432042dd1e1b82eaee  ./variants/3-three-key-voice-send-cancel/firmware/烧录V3.command
+a05994da5b57c77c4d7f881ee8d79b9a43623bbac93d47ae9cab28f16d627e42  ./variants/3-three-key-voice-send-cancel/firmware/烧录说明.md
+af7dbc76cec99f33688a302a676d60b3ba2b8a66a286494c963bd8bf13b31e5c  ./variants/3-three-key-voice-send-cancel/macos/Fn Bridge.app/Contents/Info.plist
+76196e1a682ee286286b94d9853de560b0e55e851c3c9cb59f44fdb00c7f5065  ./variants/3-three-key-voice-send-cancel/macos/Fn Bridge.app/Contents/MacOS/fn-bridge
+6686de10a28a2fe11b36cbb86dcbacc827cfc4ea116b4dabf1845e5aee629e9b  ./variants/3-three-key-voice-send-cancel/macos/Fn Bridge.app/Contents/_CodeSignature/CodeResources
+3340125a6def4684ce64c99377200c85700eb35a1ce6faa651afa461fabce08b  ./variants/3-three-key-voice-send-cancel/macos/com.kangkangzai.xiao-fn-bridge.plist
+56ecf294627356ca72fbccc6a6b47b66271ec58e5618329b86c91e069fde70f4  ./variants/3-three-key-voice-send-cancel/macos/安装Fn Bridge.command
+0b8baf24e921506e23d4571d275592e6a6a15f7922ef4de13da2b84a4455d06d  ./variants/3-three-key-voice-send-cancel/source/firmware/platformio.ini
+7276a9a8a5c54e35143d0aa3686af523e1bce9605aa699a58c6b93e3f2c59501  ./variants/3-three-key-voice-send-cancel/source/firmware/src/audio_device.c
+23e4e464471429f5f4a0392d792cf178e95bdf81ac7081c950f8596f224a06dc  ./variants/3-three-key-voice-send-cancel/source/firmware/src/dcd_esp32sx_fixed.c
+65f0f50cce09f094b6e669b382327eb6c80866143c75ea68c16fa7f4b5589441  ./variants/3-three-key-voice-send-cancel/source/firmware/src/main.cpp
+af7dbc76cec99f33688a302a676d60b3ba2b8a66a286494c963bd8bf13b31e5c  ./variants/3-three-key-voice-send-cancel/source/macos/Fn-Bridge-Info.plist
+b8db8038ef2f2a624cb49d9947f7ef5b22e9dfbbbe853a7e1d3ac67c89326ab1  ./variants/3-three-key-voice-send-cancel/source/macos/build-macos.command
+4e9fb990deaeea7f247fcc08fc0845c4f4bf06e80fdab6b59c702f3621aa3aca  ./variants/3-three-key-voice-send-cancel/source/macos/diagnose.swift
+423bf2a1bc29e7491b147dd11034d28f86b7e90bfeb71849c7ced43049fddfaa  ./variants/3-three-key-voice-send-cancel/source/macos/fn_bridge.m
+66484410fa1c2fd2eb64359829596b946e6bb941ddfc0f932dc427074e7cf803  ./variants/3-three-key-voice-send-cancel/source/macos/fn_bridge.swift
+0b407212ff0354f46ee539711d2f5eaaf274e15ff72f600ec0945b8f7f02902c  ./variants/3-three-key-voice-send-cancel/source/macos/record_xiao.swift
+0900035d42d050d50c8b2b13fc3d5cca789df9b34dcae0f0812c2ec1a790a4a4  ./variants/4-three-key-traework/README.md
+10bd1adf8153218d1a27d5f649c0c5e10a694c9b6fb75f01394bafdfd1be2137  ./variants/4-three-key-traework/firmware/XIAO-ESP32S3-Voice-Keyboard-V4-complete.bin
+f94c5d786a7a8fab06ac5d10e33bf37711a6697636dc037559ea19cc410a17f0  ./variants/4-three-key-traework/firmware/boot_app0.bin
+1776e4dd896a69d0a5c2e79957b0e2a88aa4129b1381d6478683515a1f6af343  ./variants/4-three-key-traework/firmware/bootloader.bin
+0a04ada4b13d9e2f4a30fccdf75411397393c4f56dc8c956c9b19ebfdb636233  ./variants/4-three-key-traework/firmware/firmware-app-V4.bin
+1d9cca96de0fe07ad7fc0648b9878ddecd9ce565e38b589ad20fea698ed4c80c  ./variants/4-three-key-traework/firmware/partitions.bin
+ea704589d3752cae1635d1bfe7356c537815a97d225a2acf4f055a2e02417a40  ./variants/4-three-key-traework/firmware/烧录V4.command
+2c4b49df721afc68db3ed52cc6d425f4e34e2a4bdd2181912d58da11192ebfcf  ./variants/4-three-key-traework/firmware/烧录说明.md
+07313860447f45262fdc6a437a5a29732b07ebac1641185ec27eef1a87bda161  ./variants/4-three-key-traework/macos/Fn Bridge.app/Contents/Info.plist
+a5f6cc0b60b632d6e1eb3068f9a06c9ea1c6e545e89cd08c5045ffbfa956432c  ./variants/4-three-key-traework/macos/Fn Bridge.app/Contents/MacOS/fn-bridge
+6686de10a28a2fe11b36cbb86dcbacc827cfc4ea116b4dabf1845e5aee629e9b  ./variants/4-three-key-traework/macos/Fn Bridge.app/Contents/_CodeSignature/CodeResources
+507cf9edbb447b7f89a6d5c81b6075bb4cb2badf2c25beae6bac2993aa777bbd  ./variants/4-three-key-traework/macos/TraeWork Bridge.app/Contents/Info.plist
+c7622dbc5426bba6b68a5a13d2810de48a26a5cb6eb5270a908631cf8eaf78cc  ./variants/4-three-key-traework/macos/TraeWork Bridge.app/Contents/MacOS/traework-bridge
+6686de10a28a2fe11b36cbb86dcbacc827cfc4ea116b4dabf1845e5aee629e9b  ./variants/4-three-key-traework/macos/TraeWork Bridge.app/Contents/_CodeSignature/CodeResources
+5929cb7baf39427df82e44283c97ae1ef1af322b300c309ec4919989a4d1ceff  ./variants/4-three-key-traework/macos/com.kangkangzai.xiao-fn-bridge.plist
+9da4104ee6cf6cc3fc174346f919893eff74215b804fbd0854c8f6095a509de2  ./variants/4-three-key-traework/macos/com.kangkangzai.xiao-traework-bridge.plist
+83a269a885ee70d40f57709d6759eef011262f50318a64987ab40b5345aeddb1  ./variants/4-three-key-traework/macos/安装Mac端.command
+499e835bb62d67b79e742d64ffe47be9e8820bf08059572719a1f2c923d51b32  ./variants/4-three-key-traework/macos/检查状态.command
+0b8baf24e921506e23d4571d275592e6a6a15f7922ef4de13da2b84a4455d06d  ./variants/4-three-key-traework/source/firmware/platformio.ini
+7276a9a8a5c54e35143d0aa3686af523e1bce9605aa699a58c6b93e3f2c59501  ./variants/4-three-key-traework/source/firmware/src/audio_device.c
+23e4e464471429f5f4a0392d792cf178e95bdf81ac7081c950f8596f224a06dc  ./variants/4-three-key-traework/source/firmware/src/dcd_esp32sx_fixed.c
+10a27d93e832cb3299dfe49a676967a5655537dc877da0f2582fbe364ecc0e62  ./variants/4-three-key-traework/source/firmware/src/main.cpp
+07313860447f45262fdc6a437a5a29732b07ebac1641185ec27eef1a87bda161  ./variants/4-three-key-traework/source/macos/Fn-Bridge-Info.plist
+507cf9edbb447b7f89a6d5c81b6075bb4cb2badf2c25beae6bac2993aa777bbd  ./variants/4-three-key-traework/source/macos/TraeWork-Bridge-Info.plist
+0ebbe1084037c8422525a948edb79d67d8e7e2b1cb98524761dadc78ce323ff3  ./variants/4-three-key-traework/source/macos/build-macos.command
+0cbdfbf0bd830ee478444b1d1695f33c17bb587b237edb7355f0418f6669ef25  ./variants/4-three-key-traework/source/macos/fn_bridge.m
+859287bc927cec622308e59cc9ea62713b49125e4fa0e71e56cef3aa732926ca  ./variants/4-three-key-traework/source/macos/traework_bridge.m
