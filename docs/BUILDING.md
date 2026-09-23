@@ -1,6 +1,6 @@
 # 从源码构建
 
-V2、V3 和 V4 已包含功能复现所需的固件与 Mac 源码。V1 没有原始固件源码，公开版也不提供历史完整 Flash，因此只能阅读方案介绍。
+V1、V2 和 V3 已包含功能复现所需的固件与 Mac 源码。Legacy 单键方案没有原始固件源码，公开版也不提供历史完整 Flash，因此只能阅读方案介绍。
 
 ## 固件构建
 
@@ -28,7 +28,7 @@ pio run --target upload
 
 本次发布整理时，三个 PlatformIO 工程均已在本机成功编译。由于工具链元数据和构建环境可能变化，重新编译的二进制 SHA-256 不保证与归档中的预编译文件逐字节相同；功能源码和固定 PlatformIO 平台版本保持一致。
 
-## V2 和 V3 的 Fn Bridge
+## V1 和 V2 的 Fn Bridge
 
 进入相应版本的 `source/macos`，运行：
 
@@ -40,9 +40,9 @@ pio run --target upload
 
 `fn_bridge.m` 是当前预编译 App 对应的主要 Objective-C 实现。目录中的 Swift 文件是开发期实现和诊断工具源码，保留用于审计、测试和后续修改。
 
-## V4 的两个 Mac App
+## V3 的两个 Mac App
 
-进入 `variants/4-three-key-traework/source/macos`，运行：
+进入 `variants/3-three-key-traework/source/macos`，运行：
 
 ```bash
 ./build-macos.command
