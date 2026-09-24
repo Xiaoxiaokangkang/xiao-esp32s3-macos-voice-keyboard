@@ -1,6 +1,8 @@
-# V1：三键硬件，K1 语音输入
+# V1 Fn Bridge Edition / V1 桥接兼容版
 
-V1 使用 XIAO ESP32S3、INMP441 和三键板，但当前只启用 K1。它是 Windows、macOS 和课程内容统一后的第一个功能版本，适合先完成“按住说话、松开结束”。
+V1 使用 XIAO ESP32S3、INMP441 和三键板，但当前只启用 K1。这个兼容版本通过 F13 和 Fn Bridge 实现语音输入，需要安装 Mac 端 App 并授予辅助功能权限。
+
+新安装建议优先使用不需要 Mac App 的 [V1 Direct HID Edition / V1 免安装版](../1-three-key-k1-voice-direct-hid/README.md)。如果免安装版在目标 macOS 或输入法版本上不兼容，再使用本版本。两个 V1 是仓库中同一层级的独立正式版本。
 
 ## 已验证配置
 
