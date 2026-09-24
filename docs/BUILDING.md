@@ -28,6 +28,18 @@ pio run --target upload
 
 本次发布整理时，三个 PlatformIO 工程均已在本机成功编译。由于工具链元数据和构建环境可能变化，重新编译的二进制 SHA-256 不保证与归档中的预编译文件逐字节相同；功能源码和固定 PlatformIO 平台版本保持一致。
 
+## Direct Globe HID Test B
+
+已验证的无 Fn Bridge 实验工程位于：
+
+```text
+experiments/test-b-next-keyboard-layout/source/firmware
+```
+
+它使用与 V1 相同的 PlatformIO、Arduino、TinyUSB Audio 和硬件配置，只把 K1 的 F13 Keyboard report 替换为 Consumer HID `0x029D`。构建和上传命令与 V1 相同。预编译的一体化镜像及分立镜像保存在该实验目录的 `firmware/` 中。
+
+详细实现与实机结果见 [`DIRECT_GLOBE_HID.md`](DIRECT_GLOBE_HID.md)。
+
 ## V1 和 V2 的 Fn Bridge
 
 进入相应版本的 `source/macos`，运行：

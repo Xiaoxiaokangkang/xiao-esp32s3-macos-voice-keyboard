@@ -2,6 +2,8 @@
 
 这个实验在 Test A 未被 macOS 转换为 Apple Fn 后，单独验证 Consumer Page `0x0C` / `AC Next Keyboard Layout Select` `0x029D` 是否产生 Globe 或输入源切换行为。
 
+这是当前已经实机验证成功的无 Fn Bridge 方案。完整的描述符分析、USB Composite 说明和测试证据见 [`../../docs/DIRECT_GLOBE_HID.md`](../../docs/DIRECT_GLOBE_HID.md)。
+
 ## 实验边界
 
 - K1 仍接 D2，继续使用 V1 的启动状态学习和 25 ms 防抖。
@@ -21,6 +23,8 @@ cd experiments/test-b-next-keyboard-layout/source/firmware
 pio run
 pio run --target upload
 ```
+
+也可以运行 [`firmware/烧录TestB.command`](firmware/烧录TestB.command)，或把完整镜像 `firmware/XIAO-ESP32S3-Direct-Globe-Test-B-complete.bin` 写入地址 `0x0`。
 
 ## macOS 验证顺序
 

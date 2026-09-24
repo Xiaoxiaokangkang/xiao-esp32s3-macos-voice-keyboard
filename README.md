@@ -1,6 +1,6 @@
 # XIAO ESP32S3 macOS 语音键盘
 
-这是一个基于 Seeed Studio XIAO ESP32S3、INMP441 麦克风和实体按键的 macOS USB 语音键盘项目。设备可作为 USB 键盘和 USB 麦克风使用，并通过本仓库提供的 Mac 端桥接程序调用微信输入法的 `Fn` 语音输入功能。
+这是一个基于 Seeed Studio XIAO ESP32S3、INMP441 麦克风和实体按键的 macOS USB 语音键盘项目。V1–V3 课程版本通过仓库中的 Mac 端桥接程序调用微信输入法；另有一个已经实机验证成功的实验固件，可直接发送 Consumer HID `0x029D`，不安装 Fn Bridge、不使用 `hidutil` 映射也能触发微信输入法语音输入。
 
 仓库的课程主线按功能复杂度分为 `V1` 至 `V3`，与 Windows 仓库使用相同编号。旧版单键方案移入 Legacy 历史归档，不再占用课程版本号。请根据目标功能选择版本，不要混刷。
 
@@ -15,6 +15,17 @@
 旧版一个按键、旧接线的方案保存在 [Legacy：旧版单键语音输入](legacy/one-key-m3/README.md)，仅供历史参考，不属于课程 V1–V3。
 
 更详细的横向比较见 [版本说明](docs/VERSIONS.md)。
+
+## 无 Fn Bridge 的直连实验
+
+[Direct Globe HID Test B](experiments/test-b-next-keyboard-layout/README.md) 已在 XIAO ESP32S3、macOS 27.0（Build 26A428）和微信输入法上完成实机验证：K1 长按开始语音输入，松开结束。
+
+- 成功方案：Consumer Page `0x0C` / `AC Next Keyboard Layout Select` `0x029D`
+- 失败对照：Generic Desktop Page `0x01` / `System Function Shift` `0x97`
+- 完整技术报告：[USB HID 直连 Globe 技术报告](docs/DIRECT_GLOBE_HID.md)
+- 实验索引：[experiments/README.md](experiments/README.md)
+
+该实验保留为独立目录，没有覆盖 V1–V3 Known-Good 版本。
 
 ## 硬件
 

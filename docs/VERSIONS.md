@@ -34,6 +34,16 @@
 
 V1、V2 和 V3 共用部分 USB 音频底层实现、分区表、引导程序和 Fn Bridge。各版本仍分别保留所需文件，以便每个目录都能独立构建、烧录和安装。
 
+## 实验：Direct Globe HID Test B
+
+- 三键硬件，仅启用 K1。
+- K1 直接发送 Consumer Page `0x0C` / `AC Next Keyboard Layout Select 0x029D`。
+- 不发送 F13，不安装 Fn Bridge，不需要辅助功能权限或 `hidutil` remapping。
+- 已在 macOS 27.0 与微信输入法上验证长按开始语音、松开结束。
+- 保持为独立实验，不占用 V1–V3 课程编号，也不覆盖 Known-Good 固件。
+
+源码、预编译固件和测试说明见 [`experiments/test-b-next-keyboard-layout`](../experiments/test-b-next-keyboard-layout/README.md)。
+
 ## Legacy：旧版单键语音输入
 
 - 一个语音按键，连接 D0 与 GND。
