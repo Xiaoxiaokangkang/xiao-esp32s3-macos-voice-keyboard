@@ -1,15 +1,25 @@
 # 版本顺序与功能
 
-课程主线按照功能复杂度固定为 V1、V2、V3，并与 Windows 仓库保持一致。旧单键方案作为 Legacy 历史归档，不参与课程编号。
+课程主线按照功能复杂度固定为 V1、V2、V3，并与 Windows 仓库保持一致。V1 有两种实现 Edition，功能与硬件相同，但主机侧依赖不同。旧单键方案作为 Legacy 历史归档，不参与课程编号。
 
 ## V1：三个按键，K1 语音输入
 
-- 麦克风新接线：SCK → D9、WS → D10、SD → D8。
-- K1 → D2；K2 → D1；K3 → D0。
-- 只启用 K1，按住开始语音输入，松开结束。
-- K2、K3 在这个版本中不执行功能。
-- USB 产品名：`XIAO Voice Keyboard V1`。
-- 提供固件、Mac 程序、源码和完整构建说明。
+共用配置：INMP441 SCK → D9、WS → D10、SD → D8；K1 → D2、K2 → D1、K3 → D0。只启用 K1，按住开始语音输入，松开结束。
+
+### V1 Direct HID Edition（推荐）
+
+- K1 直接发送 Consumer Page `0x0C` / `AC Next Keyboard Layout Select 0x029D`。
+- 不发送 F13，不安装 Fn Bridge，不需要辅助功能权限或 `hidutil` remapping。
+- USB 产品名：`XIAO Voice Keyboard V1 Direct`；Product ID：`0x005F`。
+- 已在 macOS 27.0（Build 26A428）与微信输入法上完成实机验证。
+- 入口：[`variants/1-three-key-k1-voice-direct-hid`](../variants/1-three-key-k1-voice-direct-hid/README.md)。
+
+### V1 Fn Bridge Edition（兼容）
+
+- K1 发送 F13，由 Fn Bridge 转换成 Apple Fn。
+- 需要安装 Fn Bridge 并授予辅助功能权限。
+- USB 产品名：`XIAO Voice Keyboard V1`；Product ID：`0x005D`。
+- 入口：[`variants/1-three-key-k1-voice`](../variants/1-three-key-k1-voice/README.md)。
 
 ## V2：三个按键，语音输入、发送、取消
 
@@ -30,19 +40,11 @@
 - USB 产品名：`XIAO Voice Keyboard V3 TraeWork`。
 - 提供固件、两个 Mac 程序、源码和完整构建说明。
 
-## 共用组件
+## 共用组件与独立目录
 
-V1、V2 和 V3 共用部分 USB 音频底层实现、分区表、引导程序和 Fn Bridge。各版本仍分别保留所需文件，以便每个目录都能独立构建、烧录和安装。
+正式版本共用部分 USB 音频底层实现、分区表和引导程序。桥接版本还共用 Fn Bridge。各版本分别保留所需文件，可以独立构建、烧录和安装，不需要从另一个版本目录复制文件。
 
-## 实验：Direct Globe HID Test B
-
-- 三键硬件，仅启用 K1。
-- K1 直接发送 Consumer Page `0x0C` / `AC Next Keyboard Layout Select 0x029D`。
-- 不发送 F13，不安装 Fn Bridge，不需要辅助功能权限或 `hidutil` remapping。
-- 已在 macOS 27.0 与微信输入法上验证长按开始语音、松开结束。
-- 保持为独立实验，不占用 V1–V3 课程编号，也不覆盖 Known-Good 固件。
-
-源码、预编译固件和测试说明见 [`experiments/test-b-next-keyboard-layout`](../experiments/test-b-next-keyboard-layout/README.md)。
+Direct HID 的 Test A/Test B 原始工程仍保存在 [`experiments`](../experiments/README.md)，用于记录 `0x97` 失败和 `0x029D` 成功的验证过程；日常使用应选择正式的 V1 Direct HID Edition。
 
 ## Legacy：旧版单键语音输入
 

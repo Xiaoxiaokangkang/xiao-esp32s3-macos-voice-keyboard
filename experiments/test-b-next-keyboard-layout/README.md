@@ -4,6 +4,8 @@
 
 这是当前已经实机验证成功的无 Fn Bridge 方案。完整的描述符分析、USB Composite 说明和测试证据见 [`../../docs/DIRECT_GLOBE_HID.md`](../../docs/DIRECT_GLOBE_HID.md)。
 
+日常使用请转到已经正式整理的 [V1 Direct HID Edition](../../variants/1-three-key-k1-voice-direct-hid/README.md)；本目录保留实验设备名、实验固件版本和原始验证材料。
+
 ## 实验边界
 
 - K1 仍接 D2，继续使用 V1 的启动状态学习和 25 ms 防抖。

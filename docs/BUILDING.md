@@ -1,10 +1,10 @@
 # 从源码构建
 
-V1、V2 和 V3 已包含功能复现所需的固件与 Mac 源码。Legacy 单键方案没有原始固件源码，公开版也不提供历史完整 Flash，因此只能阅读方案介绍。
+所有正式版本都包含功能复现所需的固件源码。V1 Fn Bridge Edition、V2 和 V3 还包含 Mac 源码；V1 Direct HID Edition 不需要 Mac 端程序。Legacy 单键方案没有原始固件源码，公开版也不提供历史完整 Flash，因此只能阅读方案介绍。
 
 ## 固件构建
 
-需要安装 PlatformIO。三个固件工程都固定使用 `espressif32 @ 6.13.0` 和 `seeed_xiao_esp32s3` 开发板定义。
+需要安装 PlatformIO。四个正式固件工程都固定使用 `espressif32 @ 6.13.0` 和 `seeed_xiao_esp32s3` 开发板定义。
 
 进入所选版本的 `source/firmware` 后运行：
 
@@ -26,19 +26,19 @@ pio run --target upload
 
 仓库中的预编译“完整固件”可写入 `0x0`；源码构建的 `firmware.bin` 是应用镜像，单独烧录时使用 `0x10000`。完整镜像还包含 bootloader、分区表和 boot_app0。
 
-本次发布整理时，三个 PlatformIO 工程均已在本机成功编译。由于工具链元数据和构建环境可能变化，重新编译的二进制 SHA-256 不保证与归档中的预编译文件逐字节相同；功能源码和固定 PlatformIO 平台版本保持一致。
+本次发布整理时，四个正式 PlatformIO 工程均已在本机成功编译。由于工具链元数据和构建环境可能变化，重新编译的二进制 SHA-256 不保证与归档中的预编译文件逐字节相同；功能源码和固定 PlatformIO 平台版本保持一致。
 
-## Direct Globe HID Test B
+## V1 Direct HID Edition
 
-已验证的无 Fn Bridge 实验工程位于：
+正式的无 Fn Bridge 工程位于：
 
 ```text
-experiments/test-b-next-keyboard-layout/source/firmware
+variants/1-three-key-k1-voice-direct-hid/source/firmware
 ```
 
-它使用与 V1 相同的 PlatformIO、Arduino、TinyUSB Audio 和硬件配置，只把 K1 的 F13 Keyboard report 替换为 Consumer HID `0x029D`。构建和上传命令与 V1 相同。预编译的一体化镜像及分立镜像保存在该实验目录的 `firmware/` 中。
+它使用与 V1 Fn Bridge Edition 相同的 PlatformIO、Arduino、TinyUSB Audio 和硬件配置，只把 K1 的 F13 Keyboard report 替换为 Consumer HID `0x029D`。构建和上传命令与其他固件相同。预编译的一体化镜像及分立镜像保存在该版本的 `firmware/` 中。
 
-详细实现与实机结果见 [`DIRECT_GLOBE_HID.md`](DIRECT_GLOBE_HID.md)。
+详细实现与实机结果见 [`DIRECT_GLOBE_HID.md`](DIRECT_GLOBE_HID.md)。Test A/Test B 的原始验证工程位于 `experiments/`。
 
 ## V1 和 V2 的 Fn Bridge
 

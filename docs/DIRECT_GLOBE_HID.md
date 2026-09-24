@@ -36,13 +36,17 @@ Generic Desktop `System Function Shift 0x97` 虽然符合 USB HID Usage Tables �
 
 原 USB Audio 使用 `tinyusb_enable_interface(USB_INTERFACE_CUSTOM, ...)` 注入描述符，并通过自定义 TinyUSB Audio driver 发送 I2S 数据。Test A 和 Test B 均没有修改这条音频路径。
 
-## 成功方案的 HID 描述符
+## 正式版本与实验记录
 
-成功源码位于：
+正式版本源码位于：
 
 ```text
-experiments/test-b-next-keyboard-layout/source/firmware/src/main.cpp
+variants/1-three-key-k1-voice-direct-hid/source/firmware/src/main.cpp
 ```
+
+Test A 和 Test B 原始工程仍保存在 `experiments/`，用于复核两个 Usage 的对照过程。正式版本以 Test B 的成功实现为基础，只调整了产品名和固件版本，不改变 HID、按键或 USB Audio 逻辑。
+
+## 成功方案的 HID 描述符
 
 报告描述符：
 
@@ -135,10 +139,10 @@ Test B 用自定义 `USBHIDDevice` 替换 `USBHIDKeyboard`，仍由 Arduino ESP3
 
 结论：成功。
 
-## 构建
+## 构建正式版本
 
 ```bash
-cd experiments/test-b-next-keyboard-layout/source/firmware
+cd variants/1-three-key-k1-voice-direct-hid/source/firmware
 pio run
 ```
 
@@ -158,16 +162,16 @@ pio run --target upload
 
 ## 预编译固件
 
-`experiments/test-b-next-keyboard-layout/firmware` 包含：
+`variants/1-three-key-k1-voice-direct-hid/firmware` 包含：
 
 | 地址 | 文件 |
 |---:|---|
 | `0x0000` | `bootloader.bin` |
 | `0x8000` | `partitions.bin` |
 | `0xE000` | `boot_app0.bin` |
-| `0x10000` | `firmware-app-Test-B.bin` |
+| `0x10000` | `firmware-app-V1-Direct.bin` |
 
-也可以直接把 `XIAO-ESP32S3-Direct-Globe-Test-B-complete.bin` 写入 `0x0`。
+也可以直接把 `XIAO-ESP32S3-Voice-Keyboard-V1-Direct-complete.bin` 写入 `0x0`。
 
 ## macOS 调试命令
 
@@ -181,7 +185,7 @@ ioreg -r -c AppleUserHIDEventService -l -w0
 
 期望看到：
 
-- Product：`XIAO Next Keyboard Layout Test B`
+- Product：`XIAO Voice Keyboard V1 Direct`
 - Vendor ID：`0x2886`
 - Product ID：`0x005F`
 - Primary Usage Page：`12`
@@ -189,25 +193,25 @@ ioreg -r -c AppleUserHIDEventService -l -w0
 
 ## 适用边界
 
-- 本实验验证的是“触发当前微信输入法语音输入”，不是完整仿真 Apple 内建键盘 Fn 键。
+- 本方案验证的是“触发当前微信输入法语音输入”，不是完整仿真 Apple 内建键盘 Fn 键。
 - Test B 不会设置 Quartz `kCGEventFlagMaskSecondaryFn`；其他只监听 Quartz Fn modifier 的应用可能不响应。
 - `0x029D` 的 USB 标准语义是“选择下一个键盘布局”。不同 macOS 版本、输入法或应用可能采用不同处理路径。
-- 使用独立 PID `0x005F` 是为了避免 macOS 复用原 V1 或 Test A 的 HID descriptor 缓存。正式合并时应评估产品身份和升级兼容策略。
+- 正式版继续使用独立 PID `0x005F`，避免 macOS 复用原 V1 Bridge Edition 或 Test A 的 HID descriptor 缓存。
 - V1–V3 Known-Good 版本没有被修改，可随时烧回原完整固件。
 
-## 正式合并建议
+## 正式版本采用的变更
 
-将方案合并到 V1 时，最小变更集合是：
+V1 Direct HID Edition 相对 Fn Bridge Edition 的最小变更集合是：
 
 1. `#include <USBHIDKeyboard.h>` 改为 `#include <USBHID.h>`。
 2. 用 Test B 的 `NextKeyboardLayoutHID` 替换 `USBHIDKeyboard`。
 3. `keyboard.press(KEY_F13)` 改为 `nextKeyboardLayout.setPressed(true)`。
 4. `keyboard.release(KEY_F13)` 改为 `nextKeyboardLayout.setPressed(false)`。
 5. 保留 K1 防抖、电平学习、TinyUSB Audio 和 I2S 代码。
-6. 删除正式发行包中的 Fn Bridge 安装步骤、LaunchAgent 和辅助功能权限说明。
+6. 正式发行包不包含 Fn Bridge、LaunchAgent 或辅助功能权限步骤。
 7. 在目标 macOS 版本上重新执行 USB Audio 与微信输入法回归测试。
 
-在完成跨版本回归前，建议继续把直连方案作为独立实验版本发布，不直接覆盖现有 V1 二进制。
+为保留兼容性和既有链接，Direct HID 以独立 Edition 发布，不覆盖原 V1 Fn Bridge Edition。若目标环境不响应 `0x029D`，可以直接烧回 Bridge Edition。
 
 ## 规范参考
 
