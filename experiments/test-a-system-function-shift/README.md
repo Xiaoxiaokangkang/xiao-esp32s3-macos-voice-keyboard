@@ -36,6 +36,17 @@ pio run --target upload
 
 只有实机观察才能判定 macOS 是否把标准 Usage `0x97` 接入 Apple 的 Fn/Globe 事件路径。编译成功只能证明固件和描述符可被当前工程接受，不能替代这一步。
 
+## 实机结果
+
+2026-09-24 在 macOS 27.0（Build 26A428）与 XIAO ESP32S3 实机上测试：
+
+- 烧录、USB 枚举和 Press/Release 输入报告均正常。
+- macOS 正确解析出 Generic Desktop Page `0x01`、System Control `0x80` 和 System Function Shift `0x97`。
+- `IOHIDEventDriver` 对该设备报告 `SupportedHIDEventMask = 0`。
+- K1 按住与松开期间，Quartz `kCGEventFlagMaskSecondaryFn` 始终为 0。
+
+结论：在这套实机与系统版本上，标准 `0x97` 不会被 macOS 转换为 Apple Fn/Globe 事件，因此 Test A 失败，继续 Test B。
+
 ## Test B（后续）
 
 如果 Test A 在 macOS 系统层没有 Fn 行为，再另建 Test B，使用 Consumer Page `0x0C` / `AC Next Keyboard Layout Select` `0x029D`。不要在本实验里同时声明两个 Usage，否则无法判断到底是哪一个产生了行为。
