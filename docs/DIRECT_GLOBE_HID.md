@@ -15,7 +15,7 @@ K1 松开
   → 微信输入法结束语音输入
 ```
 
-正式使用不需要 Fn Bridge、不需要辅助功能权限，也不需要 `hidutil` remapping。
+正式实现归属于 `V1 Direct HID Edition / V1 免安装版`，不需要 Fn Bridge、不需要辅助功能权限，也不需要 `hidutil` remapping。原 F13 方案归属于同层级的 `V1 Fn Bridge Edition / V1 桥接兼容版`。
 
 Generic Desktop `System Function Shift 0x97` 虽然符合 USB HID Usage Tables 中的 Fn 状态定义，但在同一实机环境中没有被 macOS 转换为 Apple Fn/Globe，因此不能完成本项目目标。
 
@@ -196,12 +196,12 @@ ioreg -r -c AppleUserHIDEventService -l -w0
 - 本方案验证的是“触发当前微信输入法语音输入”，不是完整仿真 Apple 内建键盘 Fn 键。
 - Test B 不会设置 Quartz `kCGEventFlagMaskSecondaryFn`；其他只监听 Quartz Fn modifier 的应用可能不响应。
 - `0x029D` 的 USB 标准语义是“选择下一个键盘布局”。不同 macOS 版本、输入法或应用可能采用不同处理路径。
-- 正式版继续使用独立 PID `0x005F`，避免 macOS 复用原 V1 Bridge Edition 或 Test A 的 HID descriptor 缓存。
+- 正式版继续使用独立 PID `0x005F`，避免 macOS 复用 V1 Fn Bridge Edition / V1 桥接兼容版或 Test A 的 HID descriptor 缓存。
 - V1–V3 Known-Good 版本没有被修改，可随时烧回原完整固件。
 
 ## 正式版本采用的变更
 
-V1 Direct HID Edition 相对 Fn Bridge Edition 的最小变更集合是：
+V1 Direct HID Edition / V1 免安装版相对 V1 Fn Bridge Edition / V1 桥接兼容版的最小变更集合是：
 
 1. `#include <USBHIDKeyboard.h>` 改为 `#include <USBHID.h>`。
 2. 用 Test B 的 `NextKeyboardLayoutHID` 替换 `USBHIDKeyboard`。
@@ -211,7 +211,7 @@ V1 Direct HID Edition 相对 Fn Bridge Edition 的最小变更集合是：
 6. 正式发行包不包含 Fn Bridge、LaunchAgent 或辅助功能权限步骤。
 7. 在目标 macOS 版本上重新执行 USB Audio 与微信输入法回归测试。
 
-为保留兼容性和既有链接，Direct HID 以独立 Edition 发布，不覆盖原 V1 Fn Bridge Edition。若目标环境不响应 `0x029D`，可以直接烧回 Bridge Edition。
+为保留兼容性和既有链接，两个 V1 以同一层级的独立正式版本发布。免安装版不覆盖桥接兼容版；若目标环境不响应 `0x029D`，可以直接烧回 V1 桥接兼容版。
 
 ## 规范参考
 

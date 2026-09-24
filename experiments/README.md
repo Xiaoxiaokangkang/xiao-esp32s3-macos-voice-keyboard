@@ -9,4 +9,4 @@
 
 详细的实现、描述符字节、测试证据和适用边界见 [`docs/DIRECT_GLOBE_HID.md`](../docs/DIRECT_GLOBE_HID.md)。
 
-Test B 的成功实现已经整理为可直接烧录和使用的 [V1 Direct HID Edition](../variants/1-three-key-k1-voice-direct-hid/README.md)。本目录继续保留为 Test A/Test B 对照证据，不作为用户首选入口。
+Test B 的成功实现已经整理为可直接烧录和使用的 [V1 Direct HID Edition / V1 免安装版](../variants/1-three-key-k1-voice-direct-hid/README.md)。本目录继续保留为 Test A/Test B 对照证据，不作为用户首选入口。

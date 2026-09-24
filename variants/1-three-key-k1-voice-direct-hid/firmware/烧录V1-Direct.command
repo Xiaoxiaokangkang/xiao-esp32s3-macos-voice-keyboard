@@ -18,7 +18,7 @@ if [[ ! -x "$pio_python" || ! -f "$esptool" ]]; then
   exit 2
 fi
 
-echo "V1 Direct HID Edition：无需 Fn Bridge。"
+echo "V1 Direct HID Edition / V1 免安装版：无需 Fn Bridge。"
 echo "请让 XIAO 进入下载模式："
 echo "按住 BOOT/B → 短按 RESET/R → 松开 RESET → 松开 BOOT。"
 echo

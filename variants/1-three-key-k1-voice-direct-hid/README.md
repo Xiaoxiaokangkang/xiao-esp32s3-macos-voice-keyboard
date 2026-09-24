@@ -1,4 +1,4 @@
-# V1 Direct HID Edition：K1 免安装语音输入
+# V1 Direct HID Edition / V1 免安装版
 
 这是 V1 的免安装实现。XIAO ESP32S3 通过 USB HID 直接向 macOS 发送 Globe 相关的 Consumer Usage，不需要安装 Fn Bridge，不需要辅助功能权限，也不需要 `hidutil` remapping。
 
@@ -11,8 +11,8 @@
 
 | 版本 | Mac 端安装 | HID 实现 | 建议 |
 |---|---|---|---|
-| V1 Direct HID Edition（本目录） | 不需要 | Consumer `0x029D` | 优先尝试 |
-| [V1 Fn Bridge Edition](../1-three-key-k1-voice/README.md) | Fn Bridge + 辅助功能权限 | F13 → Fn | Direct 不兼容时使用 |
+| V1 Direct HID Edition / V1 免安装版（本目录） | 不需要 | Consumer `0x029D` | 优先选择 |
+| [V1 Fn Bridge Edition / V1 桥接兼容版](../1-three-key-k1-voice/README.md) | Fn Bridge + 辅助功能权限 | F13 → Fn | Direct 不兼容时使用 |
 
 两个版本使用相同硬件、接线、K1 电平学习和 USB 麦克风；区别只在 K1 的 HID 实现与是否需要 Mac 端桥接。
 
@@ -25,7 +25,7 @@
 - USB 产品名：`XIAO Voice Keyboard V1 Direct`
 - USB Product ID：`0x005F`
 
-不同 macOS 或输入法版本可能有不同处理方式。如果 K1 没有触发语音输入，请使用 Fn Bridge Edition。
+不同 macOS 或输入法版本可能有不同处理方式。如果 K1 没有触发语音输入，请使用 V1 Fn Bridge Edition / V1 桥接兼容版。
 
 ## 接线
 
@@ -55,7 +55,7 @@
 
 K1 稳定按下时，固件发送 Consumer Page `0x0C` / `AC Next Keyboard Layout Select 0x029D` 并保持该状态；松开后发送 `0x0000`。它不是 Keyboard Page 的 `KEY_FN`，也不发送 F13。
 
-USB 设备仍是 HID + Audio Composite Device。USB Audio 描述符、I2S 采集和音频传输与 V1 Bridge Edition 保持一致。
+USB 设备仍是 HID + Audio Composite Device。USB Audio 描述符、I2S 采集和音频传输与 V1 Fn Bridge Edition / V1 桥接兼容版保持一致。
 
 完整的描述符、报告字节、Test A/Test B 对照、macOS 枚举证据与兼容性边界见 [Direct Globe HID 技术报告](../../docs/DIRECT_GLOBE_HID.md)。
 
@@ -74,6 +74,6 @@ pio run --target upload
 
 预编译完整镜像和分立镜像位于 `firmware/`。完整镜像从地址 `0x0` 写入，单独的应用镜像从 `0x10000` 写入。
 
-## 恢复 Bridge 版
+## 切换到 V1 桥接兼容版
 
-重新烧录 [`../1-three-key-k1-voice/firmware`](../1-three-key-k1-voice/firmware/) 中的 V1 完整固件即可。恢复 Bridge 版后仍需安装 Fn Bridge。
+重新烧录 [`../1-three-key-k1-voice/firmware`](../1-three-key-k1-voice/firmware/) 中的 V1 完整固件即可。切换后仍需安装 Fn Bridge。
