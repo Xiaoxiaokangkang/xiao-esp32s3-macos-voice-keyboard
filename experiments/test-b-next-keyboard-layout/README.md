@@ -30,3 +30,14 @@ pio run --target upload
 4. 如果 macOS 层出现所需行为，再测试微信输入法的长按开始和松开结束。
 
 `0x029D` 的标准语义是选择下一个键盘布局；实验结果不能预先假定它与所有 Apple Fn 行为完全等价。
+
+## 实机结果
+
+2026-09-24 在 macOS 27.0（Build 26A428）、微信输入法和 XIAO ESP32S3 实机上测试：
+
+- macOS 正确枚举 Consumer Page `0x0C` / Consumer Control，报告描述符和 16-bit 输入均正常。
+- 一次短按和一次长按产生了完整的四个 Press/Release HID 事件，证明 Hold 与 Release 路径正常。
+- 该 Usage 不会设置 Quartz `kCGEventFlagMaskSecondaryFn`，测试期间输入源也没有发生切换。
+- 在微信输入法文本输入场景中，K1 长按可以开始语音输入，松开可以结束，目标功能成功。
+
+结论：对本项目当前目标，Test B 的 `0x029D` 可直接替代 F13 + Fn Bridge；Test A 的 `0x97` 在同一环境下不可用。这个结论只覆盖上述实测软硬件组合，不表示所有 macOS 版本或应用都会把 `0x029D` 等同于完整的 Apple Fn 键。

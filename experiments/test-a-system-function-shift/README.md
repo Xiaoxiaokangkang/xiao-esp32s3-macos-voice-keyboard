@@ -47,6 +47,6 @@ pio run --target upload
 
 结论：在这套实机与系统版本上，标准 `0x97` 不会被 macOS 转换为 Apple Fn/Globe 事件，因此 Test A 失败，继续 Test B。
 
-## Test B（后续）
+## Test B
 
-如果 Test A 在 macOS 系统层没有 Fn 行为，再另建 Test B，使用 Consumer Page `0x0C` / `AC Next Keyboard Layout Select` `0x029D`。不要在本实验里同时声明两个 Usage，否则无法判断到底是哪一个产生了行为。
+Test B 已在 [`../test-b-next-keyboard-layout`](../test-b-next-keyboard-layout/) 中独立实现，使用 Consumer Page `0x0C` / `AC Next Keyboard Layout Select` `0x029D`。实机验证表明 Test B 可以触发微信输入法语音输入。
