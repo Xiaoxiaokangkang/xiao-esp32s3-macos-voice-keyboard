@@ -1,11 +1,12 @@
 e9948781e8be6f3369ca6b7c21d4f839d3c7e2a20eb0bcfea7e435cda3274f0d  .gitignore
 2eacae2ad09112b6c9a37e88bd5c68d8782fe626bff411dfff09b0e8c423bc40  LICENSE
-e202e95abad1e50cbc9f9a4eef4f10fef6fac6ced05edae3fafa2b02c06cf48c  README.md
-d88514d7d3499ebb355631e784096f347a243d215d71ba8aa05b7dcc656caf6b  SECURITY.md
+bf333b98037726c4c9340a079149986c5a084f0f24a10db09a8151f54423d9c5  README.md
+0683f491639b6edddc05cbf166c14ef9ff58a72150f3d4d3f9ab43497b849374  SECURITY.md
 81c4b739a049860aff60a611af3fbf921370732c0ab30cbeb9411d89f9f4300e  THIRD_PARTY_NOTICES.md
-50bd2633346fdde2c776b88b0da68f8129cdbe318f1fef02f504351a287bda6b  docs/BUILDING.md
-d4f6087731f1130483ade9b6dc1f2e6da5fa1616e5643e4c2cb741d9d14d6473  docs/DIRECT_GLOBE_HID.md
-614285a1bccb10b20756e1bc169a34f943c1ff1c8996a4b062626930094b015c  docs/VERSIONS.md
+a04ea9809e46f4d43c0928ea0e374befe34d5027247bfa64ecb356b61f634098  docs/BUILDING.md
+4bbb3494f83ec7a6b48a85c20e11966468a5bb461a17edcd06c9c438a58b98d7  docs/DIRECT_GLOBE_HID.md
+2401b55b712f1f8aa851043cfef6c85d699ab168e89812cc0921146573b4d070  docs/V2_DIRECT_HID.md
+1bb51ed881a9bfcd0634bfb5c751eef5d4e92a10bc669bba7d330eb869f9ea8a  docs/VERSIONS.md
 d453cdc520535a1fa063e6bc5e34117d823d19c8c0a270e848a98f56d4013161  experiments/README.md
 e9b04fd3c15d6232e42abac7d8727784a0628465457a7be90187d0687d0a1593  experiments/test-a-system-function-shift/README.md
 0b8baf24e921506e23d4571d275592e6a6a15f7922ef4de13da2b84a4455d06d  experiments/test-a-system-function-shift/source/firmware/platformio.ini
@@ -13,7 +14,6 @@ e9b04fd3c15d6232e42abac7d8727784a0628465457a7be90187d0687d0a1593  experiments/te
 23e4e464471429f5f4a0392d792cf178e95bdf81ac7081c950f8596f224a06dc  experiments/test-a-system-function-shift/source/firmware/src/dcd_esp32sx_fixed.c
 b12bdadd42443c7504517aa2afcaf57540b71b9782a85c7540389a770c39d89b  experiments/test-a-system-function-shift/source/firmware/src/main.cpp
 e57a96f74963a317a6daef338ef5a8f88f4dd0a971c2eb534fe04b6e6e9ed0c9  experiments/test-b-next-keyboard-layout/README.md
-9b94223144ab812a3ebb85198d65ca5d17eefc5e3060955dc57b8d6d4beb7c3d  experiments/test-b-next-keyboard-layout/firmware/SHA256SUMS.txt
 51fd0e01e7d6824ec22ccad0a5a13f675e49492ecb15cc632364b45cd4dff4a8  experiments/test-b-next-keyboard-layout/firmware/XIAO-ESP32S3-Direct-Globe-Test-B-complete.bin
 f94c5d786a7a8fab06ac5d10e33bf37711a6697636dc037559ea19cc410a17f0  experiments/test-b-next-keyboard-layout/firmware/boot_app0.bin
 1776e4dd896a69d0a5c2e79957b0e2a88aa4129b1381d6478683515a1f6af343  experiments/test-b-next-keyboard-layout/firmware/bootloader.bin
@@ -28,7 +28,6 @@ ddf150af3c119910335ec34e9ec0aa4b75cfc1961c1e8c6a7981b424218a1a74  experiments/te
 2cea740e110eff7d290068502304ed94038df3537323082baed16a587e5f0564  legacy/one-key-m3/README.md
 b4b50e3ce95f8e87d41d3887c9acff8cbf924eb8b2967a499d14344c3b444cab  legacy/one-key-m3/macos/M3原用-XIAO语音键盘-Mac安装包-v2.2.zip
 85b0da52d87441dae380a3a587ef0af5ac3050a13b070112126935c00c0ec31b  variants/1-three-key-k1-voice-direct-hid/README.md
-9271bd80a08314d965c3ec52ebae53c8006138c6988f6a3b8522330560d9e7f1  variants/1-three-key-k1-voice-direct-hid/firmware/SHA256SUMS.txt
 3a66b704e3e92d624d3992045646b09d13acb785267a884006237ed5f9a95c4b  variants/1-three-key-k1-voice-direct-hid/firmware/XIAO-ESP32S3-Voice-Keyboard-V1-Direct-complete.bin
 f94c5d786a7a8fab06ac5d10e33bf37711a6697636dc037559ea19cc410a17f0  variants/1-three-key-k1-voice-direct-hid/firmware/boot_app0.bin
 1776e4dd896a69d0a5c2e79957b0e2a88aa4129b1381d6478683515a1f6af343  variants/1-three-key-k1-voice-direct-hid/firmware/bootloader.bin
@@ -65,31 +64,20 @@ b8db8038ef2f2a624cb49d9947f7ef5b22e9dfbbbe853a7e1d3ac67c89326ab1  variants/1-thr
 423bf2a1bc29e7491b147dd11034d28f86b7e90bfeb71849c7ced43049fddfaa  variants/1-three-key-k1-voice/source/macos/fn_bridge.m
 66484410fa1c2fd2eb64359829596b946e6bb941ddfc0f932dc427074e7cf803  variants/1-three-key-k1-voice/source/macos/fn_bridge.swift
 0b407212ff0354f46ee539711d2f5eaaf274e15ff72f600ec0945b8f7f02902c  variants/1-three-key-k1-voice/source/macos/record_xiao.swift
-97be3eb0a257ff33001ae9fd2df4ebe01317ab753476492fcc94644b3a7c331f  variants/2-three-key-voice-send-cancel/README.md
-83970128cbd1506dbb391b80b982c67c57a5f65358d3166f934581fd96665934  variants/2-three-key-voice-send-cancel/diagnostics/diagnose
+f6f349f778cf3c0a6a58221630c4b1a3b1fa88c2f8a8fd3d18e7b7eca17fc2ad  variants/2-three-key-voice-send-cancel/README.md
 9a54197ab37ff3681b845793e700036a2f4ebd3d0fbcaddde7df879c3307989d  variants/2-three-key-voice-send-cancel/diagnostics/record_xiao
-2c0c5ae32cc6387ec6d54d0332e912d74ba988ce22fbffebcd84efdb58e9722b  variants/2-three-key-voice-send-cancel/firmware/XIAO-ESP32S3-Voice-Keyboard-V2-complete.bin
+d22846a36d82a0611bbcd6227e6ab7ebb4ea2323cb10ec481f4b17903d13ea72  variants/2-three-key-voice-send-cancel/firmware/XIAO-ESP32S3-Voice-Keyboard-V2-complete.bin
 f94c5d786a7a8fab06ac5d10e33bf37711a6697636dc037559ea19cc410a17f0  variants/2-three-key-voice-send-cancel/firmware/boot_app0.bin
 1776e4dd896a69d0a5c2e79957b0e2a88aa4129b1381d6478683515a1f6af343  variants/2-three-key-voice-send-cancel/firmware/bootloader.bin
-dc766de438a2c6ec0d426d5485a846bfdea69c1a40e822f8f5e90c8d9a4f414e  variants/2-three-key-voice-send-cancel/firmware/firmware-app-V2.bin
+7cb463d0fa338e96c956ef274e687dbc6faca950f7f1363c113e434d660c37db  variants/2-three-key-voice-send-cancel/firmware/firmware-app-V2.bin
 1d9cca96de0fe07ad7fc0648b9878ddecd9ce565e38b589ad20fea698ed4c80c  variants/2-three-key-voice-send-cancel/firmware/partitions.bin
-d9a68210abe267bb79814582e171bcc3597559478c16a5d8f52094922bfdd0e2  variants/2-three-key-voice-send-cancel/firmware/烧录V2.command
-8866846f5a317db6693acc562dbd05e364d15c2f94cd423c1572f58a1bbf2c81  variants/2-three-key-voice-send-cancel/firmware/烧录说明.md
-af7dbc76cec99f33688a302a676d60b3ba2b8a66a286494c963bd8bf13b31e5c  variants/2-three-key-voice-send-cancel/macos/Fn Bridge.app/Contents/Info.plist
-76196e1a682ee286286b94d9853de560b0e55e851c3c9cb59f44fdb00c7f5065  variants/2-three-key-voice-send-cancel/macos/Fn Bridge.app/Contents/MacOS/fn-bridge
-6686de10a28a2fe11b36cbb86dcbacc827cfc4ea116b4dabf1845e5aee629e9b  variants/2-three-key-voice-send-cancel/macos/Fn Bridge.app/Contents/_CodeSignature/CodeResources
-3340125a6def4684ce64c99377200c85700eb35a1ce6faa651afa461fabce08b  variants/2-three-key-voice-send-cancel/macos/com.kangkangzai.xiao-fn-bridge.plist
-56ecf294627356ca72fbccc6a6b47b66271ec58e5618329b86c91e069fde70f4  variants/2-three-key-voice-send-cancel/macos/安装Fn Bridge.command
+f77f7448c118bcbb9880ce97dd0607a155a54371b8da668702e012ee2264cff2  variants/2-three-key-voice-send-cancel/firmware/烧录V2.command
+7fea2dd34b18ba0a5e208ce4ebc625096ccfc59720d032f0ee14912fc9834d5b  variants/2-three-key-voice-send-cancel/firmware/烧录说明.md
+0b407212ff0354f46ee539711d2f5eaaf274e15ff72f600ec0945b8f7f02902c  variants/2-three-key-voice-send-cancel/source/diagnostics/record_xiao.swift
 0b8baf24e921506e23d4571d275592e6a6a15f7922ef4de13da2b84a4455d06d  variants/2-three-key-voice-send-cancel/source/firmware/platformio.ini
 7276a9a8a5c54e35143d0aa3686af523e1bce9605aa699a58c6b93e3f2c59501  variants/2-three-key-voice-send-cancel/source/firmware/src/audio_device.c
 23e4e464471429f5f4a0392d792cf178e95bdf81ac7081c950f8596f224a06dc  variants/2-three-key-voice-send-cancel/source/firmware/src/dcd_esp32sx_fixed.c
-5f9fccb830562a3313fbd8d778b2f7d82ceb92b9d739b87981acee14b85455c4  variants/2-three-key-voice-send-cancel/source/firmware/src/main.cpp
-af7dbc76cec99f33688a302a676d60b3ba2b8a66a286494c963bd8bf13b31e5c  variants/2-three-key-voice-send-cancel/source/macos/Fn-Bridge-Info.plist
-b8db8038ef2f2a624cb49d9947f7ef5b22e9dfbbbe853a7e1d3ac67c89326ab1  variants/2-three-key-voice-send-cancel/source/macos/build-macos.command
-4e9fb990deaeea7f247fcc08fc0845c4f4bf06e80fdab6b59c702f3621aa3aca  variants/2-three-key-voice-send-cancel/source/macos/diagnose.swift
-423bf2a1bc29e7491b147dd11034d28f86b7e90bfeb71849c7ced43049fddfaa  variants/2-three-key-voice-send-cancel/source/macos/fn_bridge.m
-66484410fa1c2fd2eb64359829596b946e6bb941ddfc0f932dc427074e7cf803  variants/2-three-key-voice-send-cancel/source/macos/fn_bridge.swift
-0b407212ff0354f46ee539711d2f5eaaf274e15ff72f600ec0945b8f7f02902c  variants/2-three-key-voice-send-cancel/source/macos/record_xiao.swift
+a7a31d68fa43d2e09598ff83985d544cb03e8afe6dca9756f2ec9b2d3217c9db  variants/2-three-key-voice-send-cancel/source/firmware/src/main.cpp
 2b8048fb19bc72fd3a92a29ea4ca90ad4798062252c7bdb35e0cdde6f6f7bb5a  variants/3-three-key-traework/README.md
 7d68b5a40323e9cb8d38b16b901a6bf761434c7e1b4cf9e8105a3b003d95a8b6  variants/3-three-key-traework/firmware/XIAO-ESP32S3-Voice-Keyboard-V3-complete.bin
 f94c5d786a7a8fab06ac5d10e33bf37711a6697636dc037559ea19cc410a17f0  variants/3-three-key-traework/firmware/boot_app0.bin

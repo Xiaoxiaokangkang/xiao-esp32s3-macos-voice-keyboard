@@ -15,7 +15,7 @@ K1 松开
   → 微信输入法结束语音输入
 ```
 
-正式实现归属于 `V1 Direct HID Edition / V1 免安装版`，不需要 Fn Bridge、不需要辅助功能权限，也不需要 `hidutil` remapping。原 F13 方案归属于同层级的 `V1 Fn Bridge Edition / V1 桥接兼容版`。
+正式实现用于 `V1 Direct HID Edition / V1 免安装版` 和 `V2 免安装版`，不需要 Fn Bridge、不需要辅助功能权限，也不需要 `hidutil` remapping。V1 仍保留同层级的 Fn Bridge Edition 作为兼容回退；V2 已正式采用 Direct HID。
 
 Generic Desktop `System Function Shift 0x97` 虽然符合 USB HID Usage Tables 中的 Fn 状态定义，但在同一实机环境中没有被 macOS 转换为 Apple Fn/Globe，因此不能完成本项目目标。
 
@@ -43,6 +43,14 @@ Generic Desktop `System Function Shift 0x97` 虽然符合 USB HID Usage Tables �
 ```text
 variants/1-three-key-k1-voice-direct-hid/source/firmware/src/main.cpp
 ```
+
+V2 在同一技术上增加标准 Keyboard collection，以支持 K2 发送和 K3 取消：
+
+```text
+variants/2-three-key-voice-send-cancel/source/firmware/src/main.cpp
+```
+
+V2 的完整组合框架见 [`V2_DIRECT_HID.md`](V2_DIRECT_HID.md)。
 
 Test A 和 Test B 原始工程仍保存在 `experiments/`，用于复核两个 Usage 的对照过程。正式版本以 Test B 的成功实现为基础，只调整了产品名和固件版本，不改变 HID、按键或 USB Audio 逻辑。
 
@@ -94,7 +102,7 @@ Test B 完全沿用 V1 的 K1 处理：
 
 ## USB Composite 与音频影响
 
-Test B 用自定义 `USBHIDDevice` 替换 `USBHIDKeyboard`，仍由 Arduino ESP32 USB library 建立同一个 HID interface。改变的是 HID report descriptor 和 input report payload，不是 USB Audio descriptor。
+Test B 和 V1 Direct 用自定义 `USBHIDDevice` 替换 `USBHIDKeyboard`。V2 则把自定义 Consumer device 与 `USBHIDKeyboard` 同时注册到同一个 HID interface：Consumer 使用 Report ID 4，Keyboard 使用 Report ID 1。两种做法都不修改 USB Audio descriptor。
 
 实机枚举结果：
 
@@ -196,8 +204,8 @@ ioreg -r -c AppleUserHIDEventService -l -w0
 - 本方案验证的是“触发当前微信输入法语音输入”，不是完整仿真 Apple 内建键盘 Fn 键。
 - Test B 不会设置 Quartz `kCGEventFlagMaskSecondaryFn`；其他只监听 Quartz Fn modifier 的应用可能不响应。
 - `0x029D` 的 USB 标准语义是“选择下一个键盘布局”。不同 macOS 版本、输入法或应用可能采用不同处理路径。
-- 正式版继续使用独立 PID `0x005F`，避免 macOS 复用 V1 Fn Bridge Edition / V1 桥接兼容版或 Test A 的 HID descriptor 缓存。
-- V1–V3 Known-Good 版本没有被修改，可随时烧回原完整固件。
+- V1 Direct 使用独立 PID `0x005F`；V2 Direct 使用 `0x0060`，避免 macOS 复用旧桥接版或实验固件的 HID descriptor 缓存。
+- V1 Fn Bridge Edition 继续保留，供不响应 `0x029D` 的系统或输入法环境回退。
 
 ## 正式版本采用的变更
 

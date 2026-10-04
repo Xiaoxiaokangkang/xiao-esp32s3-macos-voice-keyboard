@@ -1,6 +1,6 @@
 # 从源码构建
 
-所有正式版本都包含功能复现所需的固件源码。构建说明严格按照正式版本顺序排列：V1 Direct HID Edition / V1 免安装版、V1 Fn Bridge Edition / V1 桥接兼容版、V2、V3。桥接兼容版、V2 和 V3 还包含 Mac 源码；免安装版不需要 Mac 端程序。Legacy 单键方案没有原始固件源码，公开版也不提供历史完整 Flash，因此只能阅读方案介绍。
+所有正式版本都包含功能复现所需的固件源码。构建说明严格按照正式版本顺序排列：V1 Direct HID Edition / V1 免安装版、V1 Fn Bridge Edition / V1 桥接兼容版、V2 免安装版、V3。只有桥接版本包含运行所需的 Mac 端程序；V1 Direct 和 V2 不需要 Mac 端程序。Legacy 单键方案没有原始固件源码，公开版也不提供历史完整 Flash，因此只能阅读方案介绍。
 
 ## 固件构建
 
@@ -52,9 +52,11 @@ variants/1-three-key-k1-voice-direct-hid/source/firmware
 
 `fn_bridge.m` 是当前预编译 App 对应的主要 Objective-C 实现。目录中的 Swift 文件是开发期实现和诊断工具源码，保留用于审计、测试和后续修改。
 
-## 3. V2 的固件与 Fn Bridge
+## 3. V2 免安装版固件
 
-V2 固件位于 `variants/2-three-key-voice-send-cancel/source/firmware`，Mac 源码位于同一版本的 `source/macos`。固件使用前述 `pio run` 命令构建，Fn Bridge 使用 `./build-macos.command` 构建。
+V2 固件位于 `variants/2-three-key-voice-send-cancel/source/firmware`，使用前述 `pio run` 命令构建。它在同一个 HID interface 中同时注册 Consumer Report ID 4 和 Keyboard Report ID 1，并保留 TinyUSB Audio；不需要构建或安装任何 Mac App。
+
+必须确认实际编译参数为 `ARDUINO_USB_CDC_ON_BOOT=0`。启用 CDC 会占用 ESP32-S3 USB endpoint，导致 USB Audio 无法正常枚举。完整架构与验证清单见 [`V2_DIRECT_HID.md`](V2_DIRECT_HID.md)。
 
 ## 4. V3 的固件与两个 Mac App
 

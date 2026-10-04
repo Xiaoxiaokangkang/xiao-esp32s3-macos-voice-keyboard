@@ -2,6 +2,8 @@
 
 ## Mac 安装脚本会执行的操作
 
+本节只适用于 V1 Fn Bridge Edition、V3 和 Legacy。V1 Direct HID Edition 与 V2 免安装版没有 Mac 安装脚本，也不会申请辅助功能权限。
+
 - 将一个或两个 App 复制到 `/Applications`。
 - 在当前用户的 `~/Library/LaunchAgents` 中安装登录启动配置。
 - 使用 `launchctl` 启动后台程序。
@@ -12,7 +14,7 @@
 
 ## 辅助功能权限
 
-V1/V2 的 Fn Bridge 用于键位映射和音频输入设备切换。V3 的 TraeWork Bridge 需要辅助功能权限，以便激活 TRAE SOLO CN 并定位其输入区域。
+V1 Fn Bridge Edition 的 Fn Bridge 用于键位映射和音频输入设备切换。V3 的 Fn Bridge 和 TraeWork Bridge 分别用于 Fn 映射，以及激活 TRAE SOLO CN 并定位其输入区域。V1 Direct HID Edition 与 V2 免安装版不需要辅助功能权限。
 
 辅助功能属于高权限能力。只应从可信来源下载程序，并使用 `SHA256SUMS.txt` 校验文件。若不再使用本项目，应删除对应 App 和 LaunchAgent，并在系统设置中撤销辅助功能权限。
 
