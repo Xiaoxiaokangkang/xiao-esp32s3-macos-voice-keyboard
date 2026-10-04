@@ -18,6 +18,7 @@ if [[ ! -x "$pio_python" || ! -f "$esptool" ]]; then
   exit 2
 fi
 
+echo "V2 免安装版：K1 直连 Globe/Fn，K2 发送，K3 长按取消。"
 echo "按住 BOOT/B，短按 RESET/R，先松开 RESET，再松开 BOOT。"
 read -k 1 "?进入下载模式后按任意键继续……"
 echo

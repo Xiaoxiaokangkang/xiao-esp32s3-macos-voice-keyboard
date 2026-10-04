@@ -6,7 +6,7 @@
 |---:|---|---|---|
 | 1 | [V1 Direct HID Edition / V1 免安装版](../variants/1-three-key-k1-voice-direct-hid/README.md) | 无 | Consumer HID `0x029D` |
 | 2 | [V1 Fn Bridge Edition / V1 桥接兼容版](../variants/1-three-key-k1-voice/README.md) | Fn Bridge + 辅助功能权限 | F13 → Fn |
-| 3 | [V2：语音、发送、取消](../variants/2-three-key-voice-send-cancel/README.md) | Fn Bridge + 辅助功能权限 | F13 → Fn |
+| 3 | [V2 免安装版：语音、发送、取消](../variants/2-three-key-voice-send-cancel/README.md) | 无 | Consumer HID `0x029D` |
 | 4 | [V3：TraeWork CN](../variants/3-three-key-traework/README.md) | Fn Bridge + TraeWork Bridge | F13/F16 + Bridge |
 
 ## 1. V1 Direct HID Edition / V1 免安装版
@@ -32,11 +32,12 @@
 
 - 硬件接线与两个 V1 相同。
 - 三个按键按下时向 GPIO 输出 3.3 V 高电平，固件使用内部下拉。
-- K1：按住语音输入。
+- K1：直接发送 Consumer HID `0x029D`；按住语音输入，松开结束。
 - K2：发送 Return，并带防重复触发逻辑。
 - K3：长按约 1.5 秒执行 Command+A、Backspace，以清空文本框的方式取消当前输入。
-- USB 产品名：`XIAO Voice Keyboard V2`。
-- 提供固件、Mac 程序、源码和完整构建说明。
+- 不发送 F13，不安装 Fn Bridge，不需要辅助功能权限或 `hidutil` remapping。
+- USB 产品名：`XIAO Voice Keyboard V2 Direct`；Product ID：`0x0060`。
+- 提供固件、源码和完整构建说明；技术框架见 [`V2_DIRECT_HID.md`](V2_DIRECT_HID.md)。
 
 ## 4. V3：三个按键，TraeWork CN 工作流
 
@@ -49,7 +50,7 @@
 
 ## 实验、文档与共用组件
 
-正式版本共用部分 USB 音频底层实现、分区表和引导程序。桥接版本还共用 Fn Bridge。各版本分别保留所需文件，可以独立构建、烧录和安装，不需要从另一个版本目录复制文件。
+正式版本共用部分 USB 音频底层实现、分区表和引导程序。V1 Bridge 与 V3 还使用 Mac 端桥接程序；V1 Direct 与 V2 只需固件。各版本分别保留所需文件，可以独立构建、烧录和使用，不需要从另一个版本目录复制文件。
 
 Direct HID 的 Test A/Test B 原始工程保存在 [`experiments`](../experiments/README.md)，用于记录 `0x97` 失败和 `0x029D` 成功的验证过程；它们是技术证据，不占用正式版本顺序。构建方法见 [`BUILDING.md`](BUILDING.md)，Direct HID 技术细节见 [`DIRECT_GLOBE_HID.md`](DIRECT_GLOBE_HID.md)。
 

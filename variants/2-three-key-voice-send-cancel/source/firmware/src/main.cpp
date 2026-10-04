@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <USB.h>
+#include <USBHID.h>
 #include <USBHIDKeyboard.h>
 #include <driver/i2s.h>
 
@@ -30,6 +31,52 @@ constexpr size_t kSamplesPerPacket = kAudioPacketSize / sizeof(int16_t);
 constexpr size_t kAudioRingSamples = 2048;
 constexpr uint16_t kAudioDescriptorLength = TUD_AUDIO_MIC_ONE_CH_DESC_LEN;
 constexpr bool kUsbTransportToneTest = false;
+constexpr uint8_t kNextKeyboardLayoutReportId =
+    HID_REPORT_ID_CONSUMER_CONTROL;
+
+// macOS and the WeChat input method treat Consumer Page 0x0C /
+// AC Next Keyboard Layout Select (0x029D) as the Globe/Fn input path.  Keep
+// this in the same HID interface as the ordinary keyboard reports used by K2
+// and K3, so no Mac-side bridge or Accessibility permission is required.
+constexpr uint8_t kNextKeyboardLayoutReportDescriptor[] = {
+    0x05, 0x0C,  // Usage Page (Consumer)
+    0x09, 0x01,  // Usage (Consumer Control)
+    0xA1, 0x01,  // Collection (Application)
+    0x85, kNextKeyboardLayoutReportId,
+    0x15, 0x00,        //   Logical Minimum (0)
+    0x26, 0xFF, 0x03,  //   Logical Maximum (0x03FF)
+    0x19, 0x00,        //   Usage Minimum (0)
+    0x2A, 0xFF, 0x03,  //   Usage Maximum (0x03FF)
+    0x75, 0x10,        //   Report Size (16)
+    0x95, 0x01,        //   Report Count (1)
+    0x81, 0x00,        //   Input (Data, Array, Absolute)
+    0xC0,
+};
+
+class NextKeyboardLayoutHID : public USBHIDDevice {
+ public:
+  NextKeyboardLayoutHID() : hid_() {
+    USBHID::addDevice(this, sizeof(kNextKeyboardLayoutReportDescriptor));
+  }
+
+  void begin() { hid_.begin(); }
+  bool ready() { return hid_.ready(); }
+
+  bool setPressed(bool pressed) {
+    const uint16_t report = pressed ? 0x029D : 0x0000;
+    return hid_.SendReport(kNextKeyboardLayoutReportId, &report,
+                           sizeof(report));
+  }
+
+  uint16_t _onGetDescriptor(uint8_t *buffer) override {
+    memcpy(buffer, kNextKeyboardLayoutReportDescriptor,
+           sizeof(kNextKeyboardLayoutReportDescriptor));
+    return sizeof(kNextKeyboardLayoutReportDescriptor);
+  }
+
+ private:
+  USBHID hid_;
+};
 
 struct DebouncedButton {
   explicit DebouncedButton(int buttonPin) : pin(buttonPin) {}
@@ -46,6 +93,7 @@ DebouncedButton talkButton{kTalkButton};
 DebouncedButton sendButton{kSendButton};
 DebouncedButton clearButton{kClearButton};
 
+NextKeyboardLayoutHID nextKeyboardLayout;
 USBHIDKeyboard keyboard;
 int32_t i2sSamples[256];
 int16_t audioRing[kAudioRingSamples] = {};
@@ -350,14 +398,17 @@ void setup() {
   initMicrophone();
 
   keyboard.begin();
+  nextKeyboardLayout.begin();
   ESP_ERROR_CHECK(tinyusb_enable_interface(
       USB_INTERFACE_CUSTOM, kAudioDescriptorLength, loadAudioDescriptor));
   // This final build intentionally exposes only HID + Audio. The legacy
   // ESP32-S3 USB driver assumes IN endpoint numbers match TX FIFO numbers;
   // adding CDC reserves endpoints out of order and breaks isochronous audio.
-  USB.PID(0x005D);
-  USB.firmwareVersion(0x0200);
-  USB.productName("XIAO Voice Keyboard V2");
+  // A distinct PID prevents macOS from reusing the older F13-only HID report
+  // descriptor cached for the bridge-based V2 firmware.
+  USB.PID(0x0060);
+  USB.firmwareVersion(0x0201);
+  USB.productName("XIAO Voice Keyboard V2 Direct");
   USB.manufacturerName("Seeed Studio");
   USB.begin();
 
@@ -366,6 +417,7 @@ void setup() {
 
 void loop() {
   static bool sendArmed = true;
+  static bool talkReportPending = true;
 
   const uint32_t now = millis();
   const bool talkChanged = updateButton(talkButton, now);
@@ -373,11 +425,12 @@ void loop() {
   const bool clearChanged = updateButton(clearButton, now);
 
   if (talkChanged) {
-    if (talkButton.pressed) {
-      keyboard.press(KEY_F13);
-    } else {
-      keyboard.release(KEY_F13);
-    }
+    talkReportPending = true;
+  }
+  // Keep a transition pending until the USB endpoint accepts it. This also
+  // sends the initial released state immediately after enumeration.
+  if (talkReportPending && nextKeyboardLayout.ready()) {
+    talkReportPending = !nextKeyboardLayout.setPressed(talkButton.pressed);
   }
 
   // K2 is one-shot: it cannot re-arm until its line has stayed released for
